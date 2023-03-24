@@ -2,49 +2,55 @@ import React, { useState } from 'react';
 import './NavbarElements.css';
 
 const Navbar = () => {
-  const [isOpen, setIsOpen] = useState(false);
 
-  const toggleMenu = () => {
-    setIsOpen(!isOpen);
-  };
+  const letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+  const hackMouseOverHandler = event => {
+    let iterations = 0;
+
+    const interval = setInterval(() => {
+      event.target.innerText = event.target.innerText
+      .split("")
+      .map((letter, index) => {
+        if(index < iterations) {
+          return event.target.dataset.value[index];
+        }
+      
+        return letters[Math.floor(Math.random() * 26)]
+      })
+      .join("");
+    
+    if(iterations >= event.target.dataset.value.length){ 
+      clearInterval(interval);
+    }
+    
+    iterations += 1 / 3;
+    }, 30);
+  }
 
   return (
-    <nav className="navbar">
-      <div className="navbar-container">
-        <a href="/" className="navbar-logo">
-          Logo
-        </a>
-        <div className={`navbar-menu ${isOpen ? 'open' : ''}`}>
-          <ul className="navbar-menu-list">
-            <li className="navbar-menu-item">
-              <a href="/" className="navbar-menu-link">
-                Home
-              </a>
-            </li>
-            <li className="navbar-menu-item">
-              <a href="/about" className="navbar-menu-link">
-                About
-              </a>
-            </li>
-            <li className="navbar-menu-item">
-              <a href="/services" className="navbar-menu-link">
-                Services
-              </a>
-            </li>
-            <li className="navbar-menu-item">
-              <a href="/contact" className="navbar-menu-link">
-                Contact
-              </a>
-            </li>
-          </ul>
-          <button className="navbar-toggle" onClick={toggleMenu}>
-            <i className={`fas ${isOpen ? 'fa-times' : 'fa-bars'}`} />
-          </button>
-        </div>
+    <div className='navBar'>
+      <div className='nav_left-side'>
+        <figure className='navBar_logo-warpper'>
+          <img className='navBar_logo' src=''></img>
+        </figure>
       </div>
-    </nav>
+      <div className='nav_right-side'>
+        <div className='Line'></div>
+        <ul className='navBar_list'>
+          <li className='navBar_Link'>
+            <h1 data-value="HYPERPLEXED" className='hack' onMouseOver={hackMouseOverHandler}>HYPERPLEXED</h1>
+            <a href='#introduction' data-value="HYPERPLEXED" className='hack' onMouseOver={hackMouseOverHandler}> Introduction</a>
+          </li>
+          <li className='navBar_Link'>
+            <a href='#introduction' data-value="HYPERPLEXED" className='hack' onMouseOver={hackMouseOverHandler}>Introduction</a>
+          </li>
+          <li className='navBar_Link'>
+            <a href='#introduction' data-value="HYPERPLEXED" className='hack' onMouseOver={hackMouseOverHandler}>Introduction</a>
+          </li>
+        </ul>
+      </div>   
+    </div>
   );
 };
 
 export default Navbar;
-
