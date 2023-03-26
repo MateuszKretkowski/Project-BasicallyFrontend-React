@@ -31,21 +31,23 @@ const Navbar = () => {
     <div className='navBar'>
       <div className='nav_left-side'>
         <figure className='navBar_logo-warpper'>
-          <img className='navBar_logo' src=''></img>
+          <h2>LOGO</h2>
+          {/* <img className='logo' src={require('./logo.png')}></img> */}
         </figure>
       </div>
       <div className='nav_right-side'>
-        <div className='Line'></div>
         <ul className='navBar_list'>
           <li className='navBar_Link'>
-            <h1 data-value="HYPERPLEXED" className='hack' onMouseOver={hackMouseOverHandler}>HYPERPLEXED</h1>
-            <a href='#introduction' data-value="HYPERPLEXED" className='hack' onMouseOver={hackMouseOverHandler}> Introduction</a>
+            <h6 className='hack'>01.</h6>
+            <a href='#introduction' data-value="INTRODUCTION" className='hack hack_hover_effect' onMouseOver={hackMouseOverHandler}>INTRODUCTION</a>
           </li>
           <li className='navBar_Link'>
-            <a href='#introduction' data-value="HYPERPLEXED" className='hack' onMouseOver={hackMouseOverHandler}>Introduction</a>
+            <h6>01.</h6>
+            <a href='#introduction' data-value="INTRODUCTION" className='hack hack_hover_effect' onMouseOver={hackMouseOverHandler}>INTRODUCTION</a>
           </li>
           <li className='navBar_Link'>
-            <a href='#introduction' data-value="HYPERPLEXED" className='hack' onMouseOver={hackMouseOverHandler}>Introduction</a>
+            <h6>01.</h6>
+            <a href='#introduction' data-value="INTRODUCTION" className='hack hack_hover_effect' onMouseOver={hackMouseOverHandler}>INTRODUCTION</a>
           </li>
         </ul>
       </div>   
