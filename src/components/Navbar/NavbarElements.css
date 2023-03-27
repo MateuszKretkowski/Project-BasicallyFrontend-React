@@ -1,8 +1,9 @@
+@import url('https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;600;700;800&family=Nunito:wght@400;500;600;700;800;900;1000&display=swap');
 * {
     box-sizing: border-box;
     margin: 0;
     padding: 0;
-    font-family: 'Space Mono', monospace;
+    font-family: 'Kanit', sans-serif;
   }
 
   body {
@@ -21,13 +22,16 @@
   .navBar {
     position: relative;
     width: 100%;
-    max-width: 1000px;
+    max-width: calc(100% - 160px);
     height: 100%;
     height: 80px;
     display: flex;
     align-items: center;
     justify-content: space-between;
-    margin: 0 auto;
+    margin: 24px auto;
+    border: .5px solid #cecece;
+    border-radius: 8px;
+    border-bottom-left-radius: 0px;
   }
   .navBar_list {
     display: flex;

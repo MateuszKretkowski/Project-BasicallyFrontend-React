@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import './NavbarElements.css';
+import "../Header/HeaderElements.css";
 
 const Navbar = () => {
 
