@@ -1,74 +1,111 @@
 import React, { useState, useEffect, useRef } from 'react';
 import './HeaderElements.css';
-import "../Navbar/NavbarElements.css";
+import '../Navbar/NavbarElements.css';
+
+function MyComponent() {
+  const scrollRef = useRef(0);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      scrollRef.current = window.pageYOffset;
+    };
+
+    window.addEventListener('scroll', handleScroll);
+
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, [])};
 
 const RandomLetters = () => {
-    const [letters, setLetters] = useState("");
-    const [lettersStorage, setLettersStorage] = useState("");
+  const [letters, setLetters] = useState('');
+  const [lettersStorage, setLettersStorage] = useState('');
 
-    const divRef = useRef(null);
-  
-    useEffect(() => {
-      const numOfLetters = Math.round(window.innerHeight / 10);
-      let newLetters = "";
-      for (let i = 0; i < numOfLetters; i++) {
-        const randomCode = Math.floor(Math.random() * 26) + 65;
-        newLetters += String.fromCharCode(randomCode);
-      }
-      setLettersStorage(prevLettersStorage => prevLettersStorage + newLetters);
-      setLetters(newLetters);
-    }, []);
-  
-    useEffect(() => {
-      if (divRef.current) {
-        divRef.current.setAttribute('data-value', lettersStorage);
-      }
-    }, [lettersStorage]);
+  const divRef = useRef(null);
 
-    return <div className='line' onScroll={hackMouseOverHandler} ref={divRef}>{letters}</div>;
+  useEffect(() => {
+    const numOfLetters = Math.round(window.innerHeight / 10);
+    let newLetters = '';
+    for (let i = 0; i < numOfLetters; i++) {
+      const randomCode = Math.floor(Math.random() * 26) + 65;
+      newLetters += String.fromCharCode(randomCode);
+    }
+    setLettersStorage(newLetters);
+    setLetters(newLetters);
+  }, []);
+
+  useEffect(() => {
+    if (divRef.current) {
+      divRef.current.setAttribute('data-value', lettersStorage);
+    }
+  }, [lettersStorage]);
+
+  useEffect(() => {
+    const numOfLetters = Math.round(window.innerHeight / 10);
+    let newLettersStorage = '';
+    for (let i = 0; i < numOfLetters; i++) {
+      const randomCode = Math.floor(Math.random() * 26) + 65;
+      newLettersStorage += String.fromCharCode(randomCode);
+    }
+    setLettersStorage(newLettersStorage);
+    divRef.current.setAttribute('data-value', newLettersStorage);
+  }, [letters]);
+    return (
+      <div className="line" onScroll={hackMouseOverHandler} ref={divRef}>
+      {letters}
+    </div>
+  );
 };
 
-const letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-const hackMouseOverHandler = event => {
+
+const letters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+const hackMouseOverHandler = () => {
   let iterations = 0;
   const interval = setInterval(() => {
-    event.target.innerText = event.target.innerText
-    .split("")
-    .map((letter, index) => {
-      if(index < iterations) {
-        return event.target.dataset.value[index];
-      }
-      return letters[Math.floor(Math.random() * 26)]
-    })
-    .join("");
-  
-  if(iterations >= event.target.dataset.value.length){ 
-    clearInterval(interval);
-  }
-  
-  iterations += 1 / 3;
+    const lineDiv = document.querySelector('.line');
+    const numOfLetters = lineDiv.getAttribute('data-value').length;
+    lineDiv.innerText = lineDiv.innerText
+      .split("")
+      .map((letter, index) => {
+        if (index < iterations) {
+          return lineDiv.getAttribute('data-value')[index];
+        }
+        return letters[Math.floor(Math.random() * 26)]
+      })
+      .join("");
+
+    if (iterations >= numOfLetters) {
+      clearInterval(interval);
+    }
+
+    iterations += window.scrollY / 100;
   }, 25);
-}
-
-
-
-
+};
 
 const Header = () => {
-    return (
-        <div className='header'>
-            <div className='first_section'>
-                <div className='navBar_Border'></div>
-                <div className='line_border'>
-                    <RandomLetters />
-                </div>
-                <div className='sections'>
-                    <h1 className='header_number'>01.</h1>
-                    <h1 className='header_text anim-typewriter' data-value="INTRODUCTION" onMouseOver={hackMouseOverHandler}>INTRODUCTION</h1>
-                </div>
-            </div>
+  useEffect(() => {
+    window.addEventListener('scroll', hackMouseOverHandler);
+    return () => window.removeEventListener('scroll', hackMouseOverHandler);
+  }, []);
+
+  return (
+    <div className="header">
+      <div className="first_section">
+        <div className="navBar_Border" />
+        <div className="line_border">
+          <RandomLetters />
         </div>
-    );
+        <div className="sections">
+          <div className='Introduction_text'>
+            <h1 className="header_text anim-typewriter" data-value="INTRODUCTION">INTRODUCTION</h1>
+          </div>
+          <div className='video_wrapper'>
+            {/* <video src={}></video> */}
+          </div>
+        </div>
+      </div>
+    </div>
+  );
 };
 
 export default Header;
