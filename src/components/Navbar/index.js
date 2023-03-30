@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { ParallaxProvider, Parallax } from "react-scroll-parallax";
 import './NavbarElements.css';
 import "../Header/HeaderElements.css";
 

@@ -1,4 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
+import { Parallax } from 'react-scroll-parallax';
+import { useParallax } from 'react-scroll-parallax';
 import './HeaderElements.css';
 import '../Navbar/NavbarElements.css';
 
@@ -82,6 +84,20 @@ const hackMouseOverHandler = () => {
   }, 25);
 };
 
+const introductionText = () => {
+  return (
+    <Parallax
+    y={['-30%', '30%']}
+    alpha={[1, 0]}
+    styleInner={{ position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%, -50%)' }}
+  >
+    <h1 className="header_text anim-typewriter" data-value="INTRODUCTION">
+      INTRODUCTION
+    </h1>
+  </Parallax>
+  )
+}
+
 const Header = () => {
   useEffect(() => {
     window.addEventListener('scroll', hackMouseOverHandler);
@@ -96,9 +112,7 @@ const Header = () => {
           <RandomLetters />
         </div>
         <div className="sections">
-          <div className='Introduction_text'>
-            <h1 className="header_text anim-typewriter" data-value="INTRODUCTION">INTRODUCTION</h1>
-          </div>
+            <introductionText />
           <div className='video_wrapper'>
             {/* <video src={}></video> */}
           </div>
