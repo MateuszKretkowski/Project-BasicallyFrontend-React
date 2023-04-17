@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import { ParallaxProvider, Parallax } from "react-scroll-parallax";
+import { useScroll, animated, useSpring } from "@react-spring/web";
+import { Parallax, ParallaxLayer } from "@react-spring/parallax";
 import './NavbarElements.css';
 import "../Header/HeaderElements.css";
 

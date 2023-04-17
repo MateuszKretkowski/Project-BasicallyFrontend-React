@@ -7,7 +7,7 @@
   }
 
   body {
-    
+    overflow: hidden;
   }
 
   a {
@@ -28,7 +28,8 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    margin: 24px auto;
+    margin-top: 24px !important;
+    margin: 0 auto;
     border: .5px solid #cecece;
     border-radius: 8px;
     border-bottom-left-radius: 0px;
