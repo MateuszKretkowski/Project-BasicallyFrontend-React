@@ -20,13 +20,12 @@
   .header {
     position: relative;
     width: 100%;
-    max-width: calc(100% - 160px);
+    max-width: calc(100%);
     height: calc(200vh - 114px);
     display: flex;
     align-items: center;
     justify-content: space-between;
     margin: 0 auto;
-    border: .5px solid #cecece;
     border-top: none;
     border-bottom: none;
     border-radius: 0px;

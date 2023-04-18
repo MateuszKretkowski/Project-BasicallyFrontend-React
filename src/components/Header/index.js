@@ -66,7 +66,7 @@ const Header = () => {
       const lineDiv = document.querySelector(".line");
       const numOfLetters = lineDiv?.getAttribute("data-value")?.length || 0;
       if (!lineDiv) return;
-  
+
       lineDiv.innerText = lineDiv.innerText
         .split("")
         .map((letter, index) => {
@@ -76,15 +76,15 @@ const Header = () => {
           return letters[Math.floor(Math.random() * 26)];
         })
         .join("");
-  
+
       if (iterations >= numOfLetters) {
         clearInterval(interval);
       }
-  
+
       iterations += window.scrollY / 100;
     }, 25);
   };
-  
+
   const headerFirstText = () => {
     return <h1 className="header_text">INTRODUCTION</h1>;
   };
@@ -93,14 +93,115 @@ const Header = () => {
     return () => window.removeEventListener("scroll", hackMouseOverHandler);
   }, []);
 
+
+  function randomLetterSpacing() {
+    const value = Math.random() * 28 + 8;
+    return `${value}px`;
+  }
+  function randomLetter() {
+    const alphabet = "ABCDEFGHIJKLMNOPRSTUVWXYZ";
+    return alphabet[Math.floor(Math.random() * alphabet.length)];
+  }
+  function textWithRandomSpacing(length) {
+    return Array.from({ length }).map((_, index) => (
+      <span key={index} style={{ letterSpacing: randomLetterSpacing() }}>
+        {randomLetter()}
+      </span>
+    ));
+  }
+  const textLength = 36;
   return (
-<div className="header">
-<Parallax pages={2} style={{ height: '100%', width: '100%' }}>
-        <ParallaxLayer offset={0} speed={-0.5}>
-          <p style={{ position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%, -50%)' }}>INTRODUCTION</p>
+    <div className="header">
+      <Parallax pages={3} style={{ height: "100%", width: "100%" }}>
+        <ParallaxLayer offset={0.3} speed={1}>
+          <p
+            style={{
+              position: "absolute",
+              top: "50%",
+              left: "50%",
+              transform: "translate(-50%, -50%)",
+              fontSize: 42,
+              letterSpacing: 8,
+            }}
+          >
+            INTRODUCTION
+          </p>
+        </ParallaxLayer>
+        <ParallaxLayer offset={0.1} speed={0.3}>
+          <p
+            style={{
+              position: "absolute",
+              top: "50%",
+              left: "50%",
+              transform: "translate(-50%, -50%)",
+              opacity: 0.5,
+              fontSize: 32,
+            }}
+          >
+            {textWithRandomSpacing(textLength)}
+          </p>
+        </ParallaxLayer>
+        <ParallaxLayer offset={0.1} speed={0.1}>
+          <p
+            style={{
+              position: "absolute",
+              top: "50%",
+              left: "50%",
+              transform: "translate(-50%, -50%)",
+              opacity: 0.2,
+              fontSize: 36,
+            }}
+          >
+            {textWithRandomSpacing(textLength)}
+          </p>
+        </ParallaxLayer>
+        <ParallaxLayer offset={0.1} speed={0.02}>
+          <p
+            style={{
+              position: "absolute",
+              top: "50%",
+              left: "50%",
+              transform: "translate(-50%, -50%)",
+              opacity: 0.09,
+              fontSize: 36,
+            }}
+          >
+            {textWithRandomSpacing(textLength)}
+          </p>
+        </ParallaxLayer>
+        <ParallaxLayer offset={0.1} speed={0.05}>
+          <p
+            style={{
+              position: "absolute",
+              top: "50%",
+              left: "50%",
+              transform: "translate(-50%, -50%)",
+              opacity: 0.1,
+              fontSize: 36,
+            }}
+          >
+            {textWithRandomSpacing(textLength)}
+          </p>
+        </ParallaxLayer>
+        <ParallaxLayer offset={0.1} speed={0.4}>
+          <p
+            style={{
+              position: "absolute",
+              top: "50%",
+              left: "50%",
+              transform: "translate(-50%, -50%)",
+              opacity: 0.2,
+              fontSize: 36,
+            }}
+          >
+            {textWithRandomSpacing(textLength)}
+          </p>
+        </ParallaxLayer>
+        <ParallaxLayer offset={1} speed={0.3}>
+            
         </ParallaxLayer>
       </Parallax>
-</div>
+    </div>
   );
 };
 export default Header;
