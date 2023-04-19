@@ -112,95 +112,9 @@ const Header = () => {
   const textLength = 36;
   return (
     <div className="header">
-      <Parallax pages={3} style={{ height: "100%", width: "100%" }}>
-        <ParallaxLayer offset={0.3} speed={1}>
-          <p
-            style={{
-              position: "absolute",
-              top: "50%",
-              left: "50%",
-              transform: "translate(-50%, -50%)",
-              fontSize: 42,
-              letterSpacing: 8,
-            }}
-          >
-            INTRODUCTION
-          </p>
-        </ParallaxLayer>
-        <ParallaxLayer offset={0.1} speed={0.3}>
-          <p
-            style={{
-              position: "absolute",
-              top: "50%",
-              left: "50%",
-              transform: "translate(-50%, -50%)",
-              opacity: 0.5,
-              fontSize: 32,
-            }}
-          >
-            {textWithRandomSpacing(textLength)}
-          </p>
-        </ParallaxLayer>
-        <ParallaxLayer offset={0.1} speed={0.1}>
-          <p
-            style={{
-              position: "absolute",
-              top: "50%",
-              left: "50%",
-              transform: "translate(-50%, -50%)",
-              opacity: 0.2,
-              fontSize: 36,
-            }}
-          >
-            {textWithRandomSpacing(textLength)}
-          </p>
-        </ParallaxLayer>
-        <ParallaxLayer offset={0.1} speed={0.02}>
-          <p
-            style={{
-              position: "absolute",
-              top: "50%",
-              left: "50%",
-              transform: "translate(-50%, -50%)",
-              opacity: 0.09,
-              fontSize: 36,
-            }}
-          >
-            {textWithRandomSpacing(textLength)}
-          </p>
-        </ParallaxLayer>
-        <ParallaxLayer offset={0.1} speed={0.05}>
-          <p
-            style={{
-              position: "absolute",
-              top: "50%",
-              left: "50%",
-              transform: "translate(-50%, -50%)",
-              opacity: 0.1,
-              fontSize: 36,
-            }}
-          >
-            {textWithRandomSpacing(textLength)}
-          </p>
-        </ParallaxLayer>
-        <ParallaxLayer offset={0.1} speed={0.4}>
-          <p
-            style={{
-              position: "absolute",
-              top: "50%",
-              left: "50%",
-              transform: "translate(-50%, -50%)",
-              opacity: 0.2,
-              fontSize: 36,
-            }}
-          >
-            {textWithRandomSpacing(textLength)}
-          </p>
-        </ParallaxLayer>
-        <ParallaxLayer offset={1} speed={0.3}>
-            
-        </ParallaxLayer>
-      </Parallax>
+    <button className="start_button">
+      START
+    </button>
     </div>
   );
 };
