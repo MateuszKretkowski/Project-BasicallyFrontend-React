@@ -1,8 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
-import { useScroll, animated, useSpring } from "@react-spring/web";
-import { Parallax, ParallaxLayer } from "@react-spring/parallax";
+import { useTransition, animated } from "react-spring";
+// import { Parallax, ParallaxLayer } from '@react-spring/parallax'
 import "./HeaderElements.css";
-import "../Navbar/NavbarElements.css";
 
 const Header = () => {
   const scrollRef = useRef(0);
@@ -93,7 +92,6 @@ const Header = () => {
     return () => window.removeEventListener("scroll", hackMouseOverHandler);
   }, []);
 
-
   function randomLetterSpacing() {
     const value = Math.random() * 28 + 8;
     return `${value}px`;
@@ -110,11 +108,63 @@ const Header = () => {
     ));
   }
   const textLength = 36;
+
+  const [showStripe, setShowStripe] = useState(false);
+
+  // ... other code ...
+
+  // Add this transition definition
+  const stripeTransition = useTransition(showStripe, {
+    from: { transform: "translateX(-500px)", top: "50%" },
+    enter: { transform: "translateX(-300px)", top: "50%" },
+    leave: { transform: "translateX(-500px)", top: "50%" },
+    config: { duration: 1000 },
+  });
+
+
   return (
     <div className="header">
-    <button className="start_button">
-      START
-    </button>
+      <div className="site">
+        <div className="first_side">
+          <div className="description_container">
+            <h3 className="description">
+              UPGRADE YOUR WEB-DEV CARRER: LEARN MODERN TECHNOLOGIES, AND
+              PROSPER WITH INSPIRING LESSONS.
+              <br /> JOIN OUR MOTIVATING COMMUNITY.
+              <br /> ENROLL IN OUR COURSE TODAY, <br />
+              AND INVEST IN YOUR FUTURE.
+            </h3>
+          </div>
+        </div>
+        <div className="second_side">
+          <div className="introduction_container">
+            <h1 className="title">BASICALLYFRONTEND</h1>
+            <h3 className="subtitle">
+              MASTER WEB DEVELOPMENT. TRANSFORM CAREERS, LAND GIGS, SUCCEED.
+            </h3>
+          </div>
+        </div>
+      </div>
+      <button
+        className="start_button"
+        onClick={() => {
+          setShowStripe(!showStripe);
+        }}
+      >
+        START
+      </button>
+      <div className="container_items">
+      {stripeTransition((style, item) =>
+        item ? (
+          <animated.div
+            style={style}
+            className="stripe"
+          ></animated.div>
+        ) : (
+          ""
+        )
+      )}
+      </div>
     </div>
   );
 };
