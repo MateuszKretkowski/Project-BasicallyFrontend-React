@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
-import { useTransition, animated } from "react-spring";
+import { useTransition, animated, useSpring } from "react-spring";
 // import { Parallax, ParallaxLayer } from '@react-spring/parallax'
 import "./HeaderElements.css";
 
@@ -109,24 +109,39 @@ const Header = () => {
   }
   const textLength = 36;
 
-  const [showStripe, setShowStripe] = useState(false);
-
-  // ... other code ...
-
-  // Add this transition definition
-  const stripeTransition = useTransition(showStripe, {
-    from: { transform: "translateX(-500px)", top: "50%" },
-    enter: { transform: "translateX(-300px)", top: "50%" },
-    leave: { transform: "translateX(-500px)", top: "50%" },
-    config: { duration: 1000 },
+  const [items, setItems] = useState([]);
+  const transition = useTransition(items, {
+    from: { x: -1080, y: -500 },
+    enter: (item) => async (next) => {
+      await next({ y: item.y, x: item.x, delay: item.delay });
+    },
   });
 
+  const [toggle, setToggle] = useState(false);
+
+  const fadein = useSpring({
+    opacity: toggle ? 0 : 1,
+    x: toggle ? 100 : -100,
+  });
+
+  const [moveLeft, setMoveLeft] = useState(false);
+  const handleMoveLeft = () => {
+    setMoveLeft(!moveLeft);
+  };
+  const moveLeftAnimation = useSpring({
+    transform: moveLeft ? "translateX(-100px)" : "translateX(0px)",
+    config: { tension: 200, friction: 20 },
+  });
+  
 
   return (
     <div className="header">
       <div className="site">
         <div className="first_side">
-          <div className="description_container">
+          <animated.div
+            className="description_container"
+            style={{ ...items, ...moveLeftAnimation }}
+          >
             <h3 className="description">
               UPGRADE YOUR WEB-DEV CARRER: LEARN MODERN TECHNOLOGIES, AND
               PROSPER WITH INSPIRING LESSONS.
@@ -134,36 +149,33 @@ const Header = () => {
               <br /> ENROLL IN OUR COURSE TODAY, <br />
               AND INVEST IN YOUR FUTURE.
             </h3>
-          </div>
+          </animated.div>
         </div>
         <div className="second_side">
-          <div className="introduction_container">
+          <animated.div
+            className="introduction_container"
+            style={moveLeftAnimation}
+          >
             <h1 className="title">BASICALLYFRONTEND</h1>
             <h3 className="subtitle">
               MASTER WEB DEVELOPMENT. TRANSFORM CAREERS, LAND GIGS, SUCCEED.
             </h3>
-          </div>
+          </animated.div>
         </div>
       </div>
-      <button
-        className="start_button"
-        onClick={() => {
-          setShowStripe(!showStripe);
-        }}
-      >
+      <button className="start_button" onClick={() => setToggle(!toggle)}>
         START
       </button>
       <div className="container_items">
-      {stripeTransition((style, item) =>
-        item ? (
-          <animated.div
-            style={style}
-            className="stripe"
-          ></animated.div>
-        ) : (
-          ""
-        )
-      )}
+      <animated.div
+  className={"stripe"}
+  style={{ ...fadein, cursor: "pointer" }}
+  onClick={handleMoveLeft}
+>
+
+          <h3 className="small_text white">ABOUT US</h3>
+          <h3 className="small_text white">MAIN PAGE</h3>
+        </animated.div>
       </div>
     </div>
   );

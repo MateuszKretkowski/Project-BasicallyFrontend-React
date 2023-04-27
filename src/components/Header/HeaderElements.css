@@ -76,11 +76,37 @@ height: 117px;
   margin-bottom: 560px;
 }
 
+.white {
+  color: rgb(202, 202, 202);
+}
+
+.small_text {
+  font-weight: 500;
+font-size: 16px;
+line-height: 42px;
+letter-spacing: 0.135em;
+color: #FFFFFF;
+margin: 4px 12px;
+}
+
 .stripe {
-  width: 260px;
-  height: 160px;
-  background-color: #324B4C;
-  border: 2px solid #acacac;
+  position: absolute;
+  z-index: 10;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 400px;
+  height: 56px;
+  background-color: #131313;
+  border: 1.5px solid #ffffff;
+  border-radius: 4px;
+  margin-top: 180px;
+  cursor: pointer;
+  transition: all 300ms ease;
+}
+
+.stripe:hover {
+  margin-right: 24px;
 }
 
 .first_stripe,
