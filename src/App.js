@@ -8,7 +8,7 @@ function App() {
   return (
     <Router>
       <ParallaxProvider>
-        {/* <Navbar /> */}
+        <Navbar />
         <Header />
       </ParallaxProvider>
     </Router>

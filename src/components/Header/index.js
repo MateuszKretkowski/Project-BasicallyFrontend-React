@@ -1,6 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
 import { useTransition, animated, useSpring } from "react-spring";
-// import { Parallax, ParallaxLayer } from '@react-spring/parallax'
 import "./HeaderElements.css";
 
 const Header = () => {
@@ -107,40 +106,62 @@ const Header = () => {
       </span>
     ));
   }
-  const textLength = 36;
 
-  const [items, setItems] = useState([]);
-  const transition = useTransition(items, {
-    from: { x: -1080, y: -500 },
-    enter: (item) => async (next) => {
-      await next({ y: item.y, x: item.x, delay: item.delay });
-    },
+  // const [isLeft, setIsLeft] = useState([]);
+  // const transition = useTransition(isLeft, {
+  //   from: (item) => (next) => next({ y: item.y, x: item.x }),
+  //   enter: (item) => (next) =>
+  //   next({ y: (item.y += 100), x: (item.x += 100), delay: item.delay }),
+  //   leave: (item) => (next) =>
+  //     next({ y: (item.y), x: (item.x), delay: item.delay }),
+  // });
+
+  // const scrollRef = useRef(0);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      scrollRef.current = window.pageYOffset;
+    };
+
+    window.addEventListener("scroll", handleScroll);
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
+
+  const [isLeft, setIsLeft] = useState(false);
+
+  const titleStyle = useSpring({
+    transform: !isLeft ? "translateX(0%)" : "translateX(-400%)",
+    config: { mass: 2, tension: 100, friction: 20 },
   });
 
-  const [toggle, setToggle] = useState(false);
-
-  const fadein = useSpring({
-    opacity: toggle ? 0 : 1,
-    x: toggle ? 100 : -100,
+  const descriptionTitleStyle = useSpring({
+    transform: !isLeft ? "translateX(0%)" : "translateX(-200%)",
+    config: { mass: 2, tension: 170, friction: 26 },
   });
 
-  const [moveLeft, setMoveLeft] = useState(false);
-  const handleMoveLeft = () => {
-    setMoveLeft(!moveLeft);
-  };
-  const moveLeftAnimation = useSpring({
-    transform: moveLeft ? "translateX(-100px)" : "translateX(0px)",
-    config: { tension: 200, friction: 20 },
+  const buttonStyle = useSpring({
+    transform: !isLeft ? "translateX(0%)" : "translateX(0%)",
+    config: { mass: 1, tension: 5, friction: 3 },
   });
-  
 
   return (
     <div className="header">
       <div className="site">
         <div className="first_side">
-          <animated.div
+        <animated.div className="introduction_container" style={titleStyle}>
+            <h1 className="title">BASICALLYFRONTEND</h1>
+            <h3 className="subtitle">
+              MASTER WEB DEVELOPMENT. TRANSFORM CAREERS, LAND GIGS, SUCCEED.
+            </h3>
+          </animated.div>
+        </div>
+        <div className="second_side">
+        <animated.div
             className="description_container"
-            style={{ ...items, ...moveLeftAnimation }}
+            style={descriptionTitleStyle}
           >
             <h3 className="description">
               UPGRADE YOUR WEB-DEV CARRER: LEARN MODERN TECHNOLOGIES, AND
@@ -151,31 +172,17 @@ const Header = () => {
             </h3>
           </animated.div>
         </div>
-        <div className="second_side">
-          <animated.div
-            className="introduction_container"
-            style={moveLeftAnimation}
+        <div className="stripes">
+          <animated.button
+            className={"stripe stripe_1"}
+            style={buttonStyle}
+            onClick={() => {
+              setIsLeft((v) => !v);
+            }}
           >
-            <h1 className="title">BASICALLYFRONTEND</h1>
-            <h3 className="subtitle">
-              MASTER WEB DEVELOPMENT. TRANSFORM CAREERS, LAND GIGS, SUCCEED.
-            </h3>
-          </animated.div>
+            <h3 className="small_text black">ABOUT US</h3>
+          </animated.button>
         </div>
-      </div>
-      <button className="start_button" onClick={() => setToggle(!toggle)}>
-        START
-      </button>
-      <div className="container_items">
-      <animated.div
-  className={"stripe"}
-  style={{ ...fadein, cursor: "pointer" }}
-  onClick={handleMoveLeft}
->
-
-          <h3 className="small_text white">ABOUT US</h3>
-          <h3 className="small_text white">MAIN PAGE</h3>
-        </animated.div>
       </div>
     </div>
   );

@@ -34,7 +34,7 @@ const Navbar = () => {
     <div className='navBar'>
       <div className='nav_left-side'>
         <figure className='navBar_logo-warpper'>
-          <h2>LOGO</h2>
+          <h2 className='logo'>BF</h2>
           {/* <img className='logo' src={require('./logo.png')}></img> */}
         </figure>
       </div>

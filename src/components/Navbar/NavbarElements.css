@@ -79,6 +79,15 @@
     font-weight: 700;
   }
 
+  .logo {
+    font-weight: 800;
+    margin: 24px 24px;
+    font-family: 'Space Mono', monospace;
+    font-size: clamp(2rem, 2vw, 1rem);
+    color: black;
+    padding: 0rem clamp(.5rem, .5vw, 1rem);
+  }
+
   h2 {
     font-weight: 600;
     font-family: 'Space Mono', monospace;
