@@ -7,10 +7,12 @@ import Header from './components/Header';
 function App() {
   return (
     <Router>
+    <main>
       <ParallaxProvider>
         <Navbar />
         <Header />
       </ParallaxProvider>
+    </main>
     </Router>
   );
 }

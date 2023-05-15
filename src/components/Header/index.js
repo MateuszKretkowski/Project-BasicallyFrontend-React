@@ -3,20 +3,6 @@ import { useTransition, animated, useSpring } from "react-spring";
 import "./HeaderElements.css";
 
 const Header = () => {
-  const scrollRef = useRef(0);
-
-  useEffect(() => {
-    const handleScroll = () => {
-      scrollRef.current = window.pageYOffset;
-    };
-
-    window.addEventListener("scroll", handleScroll);
-
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-    };
-  }, []);
-
   const RandomLetters = () => {
     const [letters, setLetters] = useState("");
     const [lettersStorage, setLettersStorage] = useState("");
@@ -58,38 +44,32 @@ const Header = () => {
   };
 
   const letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-  const hackMouseOverHandler = () => {
+  const hackMouseOverHandler = (event) => {
     let iterations = 0;
-    const interval = setInterval(() => {
-      const lineDiv = document.querySelector(".line");
-      const numOfLetters = lineDiv?.getAttribute("data-value")?.length || 0;
-      if (!lineDiv) return;
 
-      lineDiv.innerText = lineDiv.innerText
+    const interval = setInterval(() => {
+      event.target.innerText = event.target.innerText
         .split("")
         .map((letter, index) => {
           if (index < iterations) {
-            return lineDiv.getAttribute("data-value")[index];
+            return event.target.dataset.value[index];
           }
+
           return letters[Math.floor(Math.random() * 26)];
         })
         .join("");
 
-      if (iterations >= numOfLetters) {
+      if (iterations >= event.target.dataset.value.length) {
         clearInterval(interval);
       }
 
-      iterations += window.scrollY / 100;
-    }, 25);
+      iterations += 1 / 3;
+    }, 30);
   };
 
   const headerFirstText = () => {
     return <h1 className="header_text">INTRODUCTION</h1>;
   };
-  useEffect(() => {
-    window.addEventListener("scroll", hackMouseOverHandler);
-    return () => window.removeEventListener("scroll", hackMouseOverHandler);
-  }, []);
 
   function randomLetterSpacing() {
     const value = Math.random() * 28 + 8;
@@ -118,18 +98,6 @@ const Header = () => {
 
   // const scrollRef = useRef(0);
 
-  useEffect(() => {
-    const handleScroll = () => {
-      scrollRef.current = window.pageYOffset;
-    };
-
-    window.addEventListener("scroll", handleScroll);
-
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-    };
-  }, []);
-
   const [isLeft, setIsLeft] = useState(false);
 
   const titleStyle = useSpring({
@@ -147,43 +115,170 @@ const Header = () => {
     config: { mass: 1, tension: 5, friction: 3 },
   });
 
+  window.addEventListener('scroll', () => {
+    document.body.style.setProperty('--scroll',window.pageYOffset / (document.body.offsetHeight - window.innerHeight));
+  }, false);
+
+  
+  
+  function reveal() {
+    var reveals = document.querySelectorAll(".reveal");
+  
+    for (var i = 0; i < reveals.length; i++) {
+      var windowHeight = window.innerHeight;
+      var elementTop = reveals[i].getBoundingClientRect().top;
+      var elementVisible = 150;
+  
+      if (elementTop < windowHeight - elementVisible) {
+        reveals[i].classList.add("active");
+      } else {
+        reveals[i].classList.remove("active");
+      }
+    }
+  }
+  
+  window.addEventListener("scroll", reveal);
+
   return (
-    <div className="header">
-      <div className="site">
-        <div className="first_side">
-        <animated.div className="introduction_container" style={titleStyle}>
-            <h1 className="title">BASICALLYFRONTEND</h1>
-            <h3 className="subtitle">
-              MASTER WEB DEVELOPMENT. TRANSFORM CAREERS, LAND GIGS, SUCCEED.
-            </h3>
-          </animated.div>
+    <div>
+        <script
+      src="https://kit.fontawesome.com/169dda284c.js"
+      crossorigin="anonymous"
+    ></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.15.1/devicon.min.css"></link>
+<header>
+      <div class="container">
+        <div class="header_text_container">
+          <h1 class="title">Websites As You Want.</h1>
+          <ul class="header_ul">
+            <li class="header_li">
+              <i class="fa-solid fa-eye"></i>
+              <h3 class="header_li_desc">Fancy Looks</h3>
+            </li>
+            <li class="header_li">
+              <i class="fa-solid fa-dumbbell"></i>
+              <h3 class="header_li_desc">Strong Design</h3>
+            </li>
+            <li class="header_li">
+              <i class="fa-solid fa-signal"></i>
+              <h3 class="header_li_desc">Full Live Server</h3>
+            </li>
+          </ul>
         </div>
-        <div className="second_side">
-        <animated.div
-            className="description_container"
-            style={descriptionTitleStyle}
-          >
-            <h3 className="description">
-              UPGRADE YOUR WEB-DEV CARRER: LEARN MODERN TECHNOLOGIES, AND
-              PROSPER WITH INSPIRING LESSONS.
-              <br /> JOIN OUR MOTIVATING COMMUNITY.
-              <br /> ENROLL IN OUR COURSE TODAY, <br />
-              AND INVEST IN YOUR FUTURE.
-            </h3>
-          </animated.div>
-        </div>
-        <div className="stripes">
-          <animated.button
-            className={"stripe stripe_1"}
-            style={buttonStyle}
-            onClick={() => {
-              setIsLeft((v) => !v);
-            }}
-          >
-            <h3 className="small_text black">ABOUT US</h3>
-          </animated.button>
+        <div class="button_wrapper">
+          <button class="button">Start Your Proffesionalism Today!</button>
         </div>
       </div>
+      <div class="scroll click"></div>
+    </header>
+    <section class="benefits">
+      <div class="benefits_container">
+        <div class="benefits_titles reveal">
+          <h1 class="benefits_title reveal">Benefits</h1>
+          <h3 class="benefits_h3 reveal">One Of The Many Benefits Of Our Offerts Are..</h3>
+        </div>
+        <div class="benefit_container">
+          <div class="benefit reveal">
+            <div class="benefit_wrapper">
+              <i class="fa-solid fa-repeat benefit_icon"></i>
+              <h4 class="benefit_title">Unlimited Rebuilds</h4>
+              <p class="benefit_p">So We just designed Your Website, but you don't like it? Don't Worry! We are open to any rebuilds that you will tell us!.</p>
+            </div>
+          </div>
+          <div class="benefit reveal">
+            <div class="benefit_wrapper">
+              <i class="fa-solid fa-money-bill-1-wave benefit_icon"></i>
+              <h4 class="benefit_title">Cheap Prices</h4>
+              <p class="benefit_p">Every offert that will make you a "cool" Website, are totally overpriced! That's why We're here trying to help for your Better, Cheaper career journey!</p>
+            </div>
+          </div>
+          <div class="benefit reveal">
+            <div class="benefit_wrapper">
+              <i class="fa-solid fa-users benefit_icon"></i>
+              <h4 class="benefit_title">Client Service</h4>
+              <p class="benefit_p">Client Service is super important for Us! We are almost every hour Online! If you have any questions, let us know!</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section id="pricing">
+      <div class="texts">
+        <h1 class="section_title">PRICINGS</h1>
+        <h2 class="pricing_title">Reasonable <span class="text--purple">Prices.</span></h2>
+        <p class="pricing_para">Hope You Like That Cheap Prices!</p>
+      </div>
+      <div class="plans_container">
+        <div class="plan">
+          <div class="plan_header">
+                <span class="name">NORMAL</span>
+                <span class="price">$59.99 - $89.99</span>
+                <span class="duration">One-Time Purchase</span>
+              </div>
+              <div class="plan_features">
+                <span class="main_feature">BENEFITS</span>
+                <span class="feature feature_bigger">Production Time: 1-2 Days</span>
+                <span class="feature feature_bigger">Design Out Of Earth</span>
+                <span class="feature feature_big">Unlimited Reworks</span>
+                <span class="feature feature_big">24/7 Support</span>
+                <span class="feature feature_big">Full-Live Server</span>
+                <span class="feature">Interactable Features</span>
+                <span class="feature">Mobile Support</span>
+                <span class="feature">Animations</span>
+                <span class="feature"></span>
+              </div>
+            </div>
+        </div>
+    </section>
+    <section id="projects">
+      <div class="container">
+        <div class="row">
+          <div class="benefits_titles">
+            <h1 class="sectiontitle reveal">Projects</h1>
+            <h3 class="benefits_h3 reveal">Here's Some Of Our Projects That We Made Up</h3>
+          </div>
+          <ul class="projectlist">
+            <li class="project">
+              <div class="projectwrapper reveal">
+                {/* {<img src="./assets/my project.png" class="projectimg" alt="">} */}
+                <div class="projectwrapper--bg"></div>
+                <div class="projectdescription">
+                  <h3 class="projectdescription--title">
+                    TReact Template Rectreation
+                  </h3>
+                  <h4 class="projectdescription--sub-title">
+                    Html, CSS, JS
+                  </h4>
+                  <p class="projectdescription--para">
+                    TReact is a website with a huge number of templates for users all over the world. I recreated one.
+                  </p>
+                  <div class="projectdescription--links">
+                    <a href="./assets/my project.png" class="project__description--link">
+                      <i class="fas fa-link"></i>
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </section>
+    <footer class="footer">
+      <div class="footer_container">
+        <ul class="nav_links nav_ul">
+          <li class="nav_link footer_link">
+            <a href="" class="footer-hover">ABOUT US</a>
+          </li>
+          <li class="nav_link footer_link">
+            <a href="" class="footer-hover">PROJECTS</a>
+          </li>
+          <li class="nav_link footer_link">
+            <a href="" class="footer-hover">PRICING</a>
+          </li>
+        </ul>
+      </div>
+    </footer>
     </div>
   );
 };
