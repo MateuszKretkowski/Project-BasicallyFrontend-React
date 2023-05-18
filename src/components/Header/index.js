@@ -1,5 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import { useTransition, animated, useSpring } from "react-spring";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faEnvelope, faEye, faDumbbell, faSignal } from '@fortawesome/free-solid-svg-icons';
 import "./HeaderElements.css";
 
 const Header = () => {
@@ -152,15 +154,17 @@ const Header = () => {
           <h1 class="title">Websites As You Want.</h1>
           <ul class="header_ul">
             <li class="header_li">
-              <i class="fa-solid fa-eye"></i>
+              <FontAwesomeIcon icon={faEye} className="icon" />
               <h3 class="header_li_desc">Fancy Looks</h3>
             </li>
             <li class="header_li">
-              <i class="fa-solid fa-dumbbell"></i>
+              <FontAwesomeIcon icon={faDumbbell} className="icon" />
+              <FontAwesomeIcon icon="fa-solid fa-dumbbell" />
               <h3 class="header_li_desc">Strong Design</h3>
             </li>
             <li class="header_li">
-              <i class="fa-solid fa-signal"></i>
+              <FontAwesomeIcon icon={faEye} className="icon" />
+              <FontAwesomeIcon icon={faSignal} className="icon" />
               <h3 class="header_li_desc">Full Live Server</h3>
             </li>
           </ul>
