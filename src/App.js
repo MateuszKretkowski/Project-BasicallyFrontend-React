@@ -9,7 +9,6 @@ function App() {
     <Router>
     <main>
       <ParallaxProvider>
-        <Navbar />
         <Header />
       </ParallaxProvider>
     </main>

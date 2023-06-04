@@ -1,8 +1,18 @@
 import React, { useState, useEffect, useRef } from "react";
 import { useTransition, animated, useSpring } from "react-spring";
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faEnvelope, faEye, faDumbbell, faSignal } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faEnvelope,
+  faEye,
+  faDumbbell,
+  faSignal,
+  faMoneyBill1Wave,
+  faRepeat,
+  faUsers,
+} from "@fortawesome/free-solid-svg-icons";
 import "./HeaderElements.css";
+
+import { Parallax, ParallaxLayer } from "@react-spring/parallax";
 
 const Header = () => {
   const RandomLetters = () => {
@@ -43,30 +53,6 @@ const Header = () => {
         {letters}
       </div>
     );
-  };
-
-  const letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-  const hackMouseOverHandler = (event) => {
-    let iterations = 0;
-
-    const interval = setInterval(() => {
-      event.target.innerText = event.target.innerText
-        .split("")
-        .map((letter, index) => {
-          if (index < iterations) {
-            return event.target.dataset.value[index];
-          }
-
-          return letters[Math.floor(Math.random() * 26)];
-        })
-        .join("");
-
-      if (iterations >= event.target.dataset.value.length) {
-        clearInterval(interval);
-      }
-
-      iterations += 1 / 3;
-    }, 30);
   };
 
   const headerFirstText = () => {
@@ -117,20 +103,49 @@ const Header = () => {
     config: { mass: 1, tension: 5, friction: 3 },
   });
 
-  window.addEventListener('scroll', () => {
-    document.body.style.setProperty('--scroll',window.pageYOffset / (document.body.offsetHeight - window.innerHeight));
-  }, false);
+  window.addEventListener(
+    "scroll",
+    () => {
+      document.body.style.setProperty(
+        "--scroll",
+        window.pageYOffset / (document.body.offsetHeight - window.innerHeight)
+      );
+    },
+    false
+  );
 
-  
-  
+  const letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+  const hackMouseOverHandler = (event) => {
+    let iterations = 0;
+
+    const interval = setInterval(() => {
+      event.target.innerText = event.target.innerText
+        .split("")
+        .map((letter, index) => {
+          if (index < iterations) {
+            return event.target.dataset.value[index];
+          }
+
+          return letters[Math.floor(Math.random() * 26)];
+        })
+        .join("");
+
+      if (iterations >= event.target.dataset.value.length) {
+        clearInterval(interval);
+      }
+
+      iterations += 1 / 3;
+    }, 30);
+  };
+
   function reveal() {
     var reveals = document.querySelectorAll(".reveal");
-  
+
     for (var i = 0; i < reveals.length; i++) {
       var windowHeight = window.innerHeight;
       var elementTop = reveals[i].getBoundingClientRect().top;
       var elementVisible = 150;
-  
+
       if (elementTop < windowHeight - elementVisible) {
         reveals[i].classList.add("active");
       } else {
@@ -138,151 +153,100 @@ const Header = () => {
       }
     }
   }
-  
+
   window.addEventListener("scroll", reveal);
 
   return (
-    <div>
-        <script
-      src="https://kit.fontawesome.com/169dda284c.js"
-      crossorigin="anonymous"
-    ></script>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.15.1/devicon.min.css"></link>
-<header>
-      <div class="container">
-        <div class="header_text_container">
-          <h1 class="title">Websites As You Want.</h1>
-          <ul class="header_ul">
-            <li class="header_li">
-              <FontAwesomeIcon icon={faEye} className="icon" />
-              <h3 class="header_li_desc">Fancy Looks</h3>
+    <div className="website">
+      <script
+        src="https://kit.fontawesome.com/169dda284c.js"
+        crossorigin="anonymous"
+      ></script>
+      <link
+        rel="stylesheet"
+        href="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.15.1/devicon.min.css"
+      ></link>
+                  <Parallax pages={2}>
+      <div className="navBar">
+        <div className="nav_left-side">
+          <figure className="navBar_logo-warpper">
+            <h2 className="logo"></h2>
+            {/* <img className='logo' src={require('./logo.png')}></img> */}
+          </figure>
+        </div>
+        <div className="nav_right-side">
+          <ul className="navBar_list">
+            <li className="navBar_Link">
+              <h6>01.</h6>
+              <a
+                href="#introduction"
+                data-value="INTRODUCTION"
+                className="hack hack_hover_effect"
+                onMouseOver={hackMouseOverHandler}
+              >
+                INTRODUCTION
+              </a>
             </li>
-            <li class="header_li">
-              <FontAwesomeIcon icon={faDumbbell} className="icon" />
-              <FontAwesomeIcon icon="fa-solid fa-dumbbell" />
-              <h3 class="header_li_desc">Strong Design</h3>
+            <li className="navBar_Link">
+              <h6>02.</h6>
+              <a
+                href="#introduction"
+                data-value="BENEFITS"
+                className="hack hack_hover_effect"
+                onMouseOver={hackMouseOverHandler}
+              >
+                BENEFITS
+              </a>
             </li>
-            <li class="header_li">
-              <FontAwesomeIcon icon={faEye} className="icon" />
-              <FontAwesomeIcon icon={faSignal} className="icon" />
-              <h3 class="header_li_desc">Full Live Server</h3>
+            <li className="navBar_Link">
+              <h6>03.</h6>
+              <a
+                href="#introduction"
+                data-value="PRICING"
+                className="hack hack_hover_effect"
+                onMouseOver={hackMouseOverHandler}
+              >
+                PRICING
+              </a>
             </li>
           </ul>
         </div>
-        <div class="button_wrapper">
-          <button class="button">Start Your Proffesionalism Today!</button>
-        </div>
       </div>
-      <div class="scroll click"></div>
-    </header>
-    <section class="benefits">
-      <div class="benefits_container">
-        <div class="benefits_titles reveal">
-          <h1 class="benefits_title reveal">Benefits</h1>
-          <h3 class="benefits_h3 reveal">One Of The Many Benefits Of Our Offerts Are..</h3>
-        </div>
-        <div class="benefit_container">
-          <div class="benefit reveal">
-            <div class="benefit_wrapper">
-              <i class="fa-solid fa-repeat benefit_icon"></i>
-              <h4 class="benefit_title">Unlimited Rebuilds</h4>
-              <p class="benefit_p">So We just designed Your Website, but you don't like it? Don't Worry! We are open to any rebuilds that you will tell us!.</p>
-            </div>
-          </div>
-          <div class="benefit reveal">
-            <div class="benefit_wrapper">
-              <i class="fa-solid fa-money-bill-1-wave benefit_icon"></i>
-              <h4 class="benefit_title">Cheap Prices</h4>
-              <p class="benefit_p">Every offert that will make you a "cool" Website, are totally overpriced! That's why We're here trying to help for your Better, Cheaper career journey!</p>
-            </div>
-          </div>
-          <div class="benefit reveal">
-            <div class="benefit_wrapper">
-              <i class="fa-solid fa-users benefit_icon"></i>
-              <h4 class="benefit_title">Client Service</h4>
-              <p class="benefit_p">Client Service is super important for Us! We are almost every hour Online! If you have any questions, let us know!</p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-    <section id="pricing">
-      <div class="texts">
-        <h1 class="section_title">PRICINGS</h1>
-        <h2 class="pricing_title">Reasonable <span class="text--purple">Prices.</span></h2>
-        <p class="pricing_para">Hope You Like That Cheap Prices!</p>
-      </div>
-      <div class="plans_container">
-        <div class="plan">
-          <div class="plan_header">
-                <span class="name">NORMAL</span>
-                <span class="price">$59.99 - $89.99</span>
-                <span class="duration">One-Time Purchase</span>
-              </div>
-              <div class="plan_features">
-                <span class="main_feature">BENEFITS</span>
-                <span class="feature feature_bigger">Production Time: 1-2 Days</span>
-                <span class="feature feature_bigger">Design Out Of Earth</span>
-                <span class="feature feature_big">Unlimited Reworks</span>
-                <span class="feature feature_big">24/7 Support</span>
-                <span class="feature feature_big">Full-Live Server</span>
-                <span class="feature">Interactable Features</span>
-                <span class="feature">Mobile Support</span>
-                <span class="feature">Animations</span>
-                <span class="feature"></span>
-              </div>
-            </div>
-        </div>
-    </section>
-    <section id="projects">
-      <div class="container">
-        <div class="row">
-          <div class="benefits_titles">
-            <h1 class="sectiontitle reveal">Projects</h1>
-            <h3 class="benefits_h3 reveal">Here's Some Of Our Projects That We Made Up</h3>
-          </div>
-          <ul class="projectlist">
-            <li class="project">
-              <div class="projectwrapper reveal">
-                {/* {<img src="./assets/my project.png" class="projectimg" alt="">} */}
-                <div class="projectwrapper--bg"></div>
-                <div class="projectdescription">
-                  <h3 class="projectdescription--title">
-                    TReact Template Rectreation
-                  </h3>
-                  <h4 class="projectdescription--sub-title">
-                    Html, CSS, JS
-                  </h4>
-                  <p class="projectdescription--para">
-                    TReact is a website with a huge number of templates for users all over the world. I recreated one.
-                  </p>
-                  <div class="projectdescription--links">
-                    <a href="./assets/my project.png" class="project__description--link">
-                      <i class="fas fa-link"></i>
-                    </a>
-                  </div>
+      <header>
+        <div className="header_container">
+          <div className="header_wrapper">
+              <ParallaxLayer
+                className="header_background_wrapper"
+                speed={0.2}
+              >
+                <img
+                  className="header_background"
+                  src={require("./header_background.jpg")}
+                ></img>
+              </ParallaxLayer>
+              <ParallaxLayer
+                speed={1}
+              >
+                <img
+                  className="header_miles_morales web"
+                  src={require("./web.png")}
+                ></img>
+                <img
+                  className="header_miles_morales"
+                  src={require("./My project (1).png")}
+                ></img>
+              </ParallaxLayer>
+              <ParallaxLayer className="header_title_wrapper">
+                <h2>01.</h2>
+                <div className="title">
+                  <h2>Spider-Man</h2>
+                  <h2>Beyond The Spiderverse</h2>
                 </div>
-              </div>
-            </li>
-          </ul>
+              </ParallaxLayer>
+          </div>
         </div>
-      </div>
-    </section>
-    <footer class="footer">
-      <div class="footer_container">
-        <ul class="nav_links nav_ul">
-          <li class="nav_link footer_link">
-            <a href="" class="footer-hover">ABOUT US</a>
-          </li>
-          <li class="nav_link footer_link">
-            <a href="" class="footer-hover">PROJECTS</a>
-          </li>
-          <li class="nav_link footer_link">
-            <a href="" class="footer-hover">PRICING</a>
-          </li>
-        </ul>
-      </div>
-    </footer>
+      </header>
+            </Parallax>
     </div>
   );
 };

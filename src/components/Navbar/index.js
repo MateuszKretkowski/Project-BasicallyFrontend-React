@@ -45,12 +45,12 @@ const Navbar = () => {
             <a href='#introduction' data-value="INTRODUCTION" className='hack hack_hover_effect' onMouseOver={hackMouseOverHandler}>INTRODUCTION</a>
           </li>
           <li className='navBar_Link'>
-            <h6>01.</h6>
-            <a href='#introduction' data-value="INTRODUCTION" className='hack hack_hover_effect' onMouseOver={hackMouseOverHandler}>INTRODUCTION</a>
+            <h6>02.</h6>
+            <a href='#introduction' data-value="BENEFITS" className='hack hack_hover_effect' onMouseOver={hackMouseOverHandler}>BENEFITS</a>
           </li>
           <li className='navBar_Link'>
-            <h6>01.</h6>
-            <a href='#introduction' data-value="INTRODUCTION" className='hack hack_hover_effect' onMouseOver={hackMouseOverHandler}>INTRODUCTION</a>
+            <h6>03.</h6>
+            <a href='#introduction' data-value="PRICING" className='hack hack_hover_effect' onMouseOver={hackMouseOverHandler}>PRICING</a>
           </li>
         </ul>
       </div>   
