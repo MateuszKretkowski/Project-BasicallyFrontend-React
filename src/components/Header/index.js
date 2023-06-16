@@ -1,18 +1,12 @@
 import React, { useState, useEffect, useRef } from "react";
 import { useTransition, animated, useSpring } from "react-spring";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faEnvelope,
-  faEye,
-  faDumbbell,
-  faSignal,
-  faMoneyBill1Wave,
-  faRepeat,
-  faUsers,
-} from "@fortawesome/free-solid-svg-icons";
+import { faGlobe } from "@fortawesome/free-brands-svg-icons";
+import { faArrowDown } from "@fortawesome/free-brands-svg-icons";
 import "./HeaderElements.css";
 
 import { Parallax, ParallaxLayer } from "@react-spring/parallax";
+import { click } from "@testing-library/user-event/dist/click";
 
 const Header = () => {
   const RandomLetters = () => {
@@ -55,64 +49,7 @@ const Header = () => {
     );
   };
 
-  const headerFirstText = () => {
-    return <h1 className="header_text">INTRODUCTION</h1>;
-  };
 
-  function randomLetterSpacing() {
-    const value = Math.random() * 28 + 8;
-    return `${value}px`;
-  }
-  function randomLetter() {
-    const alphabet = "ABCDEFGHIJKLMNOPRSTUVWXYZ";
-    return alphabet[Math.floor(Math.random() * alphabet.length)];
-  }
-  function textWithRandomSpacing(length) {
-    return Array.from({ length }).map((_, index) => (
-      <span key={index} style={{ letterSpacing: randomLetterSpacing() }}>
-        {randomLetter()}
-      </span>
-    ));
-  }
-
-  // const [isLeft, setIsLeft] = useState([]);
-  // const transition = useTransition(isLeft, {
-  //   from: (item) => (next) => next({ y: item.y, x: item.x }),
-  //   enter: (item) => (next) =>
-  //   next({ y: (item.y += 100), x: (item.x += 100), delay: item.delay }),
-  //   leave: (item) => (next) =>
-  //     next({ y: (item.y), x: (item.x), delay: item.delay }),
-  // });
-
-  // const scrollRef = useRef(0);
-
-  const [isLeft, setIsLeft] = useState(false);
-
-  const titleStyle = useSpring({
-    transform: !isLeft ? "translateX(0%)" : "translateX(-400%)",
-    config: { mass: 2, tension: 100, friction: 20 },
-  });
-
-  const descriptionTitleStyle = useSpring({
-    transform: !isLeft ? "translateX(0%)" : "translateX(-200%)",
-    config: { mass: 2, tension: 170, friction: 26 },
-  });
-
-  const buttonStyle = useSpring({
-    transform: !isLeft ? "translateX(0%)" : "translateX(0%)",
-    config: { mass: 1, tension: 5, friction: 3 },
-  });
-
-  window.addEventListener(
-    "scroll",
-    () => {
-      document.body.style.setProperty(
-        "--scroll",
-        window.pageYOffset / (document.body.offsetHeight - window.innerHeight)
-      );
-    },
-    false
-  );
 
   const letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
   const hackMouseOverHandler = (event) => {
@@ -155,6 +92,18 @@ const Header = () => {
   }
 
   window.addEventListener("scroll", reveal);
+  const [image, setImage] = useState("./img_1.png");
+  const clickable = document.getElementsByClassName("clickable")
+  const swap = () => {
+    for (var i=0; i < clickable.length; i++) {
+      clickable[i].addEventListener("click", function() {
+        var contentText = this.getAtribute("data-value1");
+        var contentImg = this.getAtribute("data-value2");
+        document.getElementsByClassName("howitworks_text").innerText = contentText;
+        setImage(contentImg);
+      })
+    }
+  }
 
   return (
     <div className="website">
@@ -166,87 +115,80 @@ const Header = () => {
         rel="stylesheet"
         href="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.15.1/devicon.min.css"
       ></link>
-                  <Parallax pages={2}>
-      <div className="navBar">
-        <div className="nav_left-side">
-          <figure className="navBar_logo-warpper">
-            <h2 className="logo"></h2>
-            {/* <img className='logo' src={require('./logo.png')}></img> */}
-          </figure>
-        </div>
-        <div className="nav_right-side">
-          <ul className="navBar_list">
-            <li className="navBar_Link">
-              <h6>01.</h6>
-              <a
-                href="#introduction"
-                data-value="INTRODUCTION"
-                className="hack hack_hover_effect"
-                onMouseOver={hackMouseOverHandler}
-              >
-                INTRODUCTION
-              </a>
-            </li>
-            <li className="navBar_Link">
-              <h6>02.</h6>
-              <a
-                href="#introduction"
-                data-value="BENEFITS"
-                className="hack hack_hover_effect"
-                onMouseOver={hackMouseOverHandler}
-              >
-                BENEFITS
-              </a>
-            </li>
-            <li className="navBar_Link">
-              <h6>03.</h6>
-              <a
-                href="#introduction"
-                data-value="PRICING"
-                className="hack hack_hover_effect"
-                onMouseOver={hackMouseOverHandler}
-              >
-                PRICING
-              </a>
-            </li>
-          </ul>
-        </div>
-      </div>
-      <header>
-        <div className="header_container">
-          <div className="header_wrapper">
-              <ParallaxLayer
-                className="header_background_wrapper"
-                speed={0.2}
-              >
-                <img
-                  className="header_background"
-                  src={require("./header_background.jpg")}
-                ></img>
-              </ParallaxLayer>
-              <ParallaxLayer
-                speed={1}
-              >
-                <img
-                  className="header_miles_morales web"
-                  src={require("./web.png")}
-                ></img>
-                <img
-                  className="header_miles_morales"
-                  src={require("./My project (1).png")}
-                ></img>
-              </ParallaxLayer>
-              <ParallaxLayer className="header_title_wrapper">
-                <h2>01.</h2>
-                <div className="title">
-                  <h2>Spider-Man</h2>
-                  <h2>Beyond The Spiderverse</h2>
-                </div>
-              </ParallaxLayer>
+        <div className="navBar">
+          <div className="navBar_wrapper">
+            <ul className="links_wrapper">
+              <li className="link">
+                <h4 className="link_title link_title_hover">Parents</h4>
+              </li>
+              <li className="link">
+                <h4 className="link_title link_title_hover">Sitters</h4>
+              </li>
+              <li className="link">
+                <h4 className="link_title link_title_hover">Trust & Safety</h4>
+              </li>
+              <li className="link">
+                <h4 className="link_title link_title_hover">Blog</h4>
+              </li>
+            </ul>
+            <img className="logo" src={require("./l.png")}></img>
+            <ul className="links_wrapper">
+              <li className="link_title link_login_hover">
+                <h4>Log in</h4>
+              </li>
+              <li className="link_title link_signup_hover">
+                <h4>Sign up</h4>
+              </li>
+            </ul>
           </div>
         </div>
-      </header>
-            </Parallax>
+        <header>
+          <div className="header_wrapper">
+            <div className="header_container">
+              <img className="img imgnum1" src={require("./img_1.png")}></img>
+              <div className="img imgnum2"></div>
+              <img className="img imgnum3" src={require("./img_2.png")}></img>
+              <img className="img imgnum4" src={require("./img_3.png")}></img>
+              <div className="img imgnum5"></div>
+            <div className="header_texts_wrapper">
+              <h1 className="header_text">Reliable Kidcare On Demand</h1>
+              <h2 className="header_text">Otter matches parents who need care with trusted sitters in their community, on-demand</h2>
+              <div className="header_signup">
+                <h4 className="header_text btn_text">Sign up</h4>
+              </div>
+            </div>
+            </div>
+          </div>
+        </header>
+        <section className="howitworks">
+          <div className="howitworks_container">
+            <div className="howitworks_wrapper">
+              <div className="left_side">
+                <h5>HOW IT WORKS</h5>
+                <h1>
+                We help families find reliable, flexible kidcare
+                </h1>
+                <h2>We'll match you with sitters based on your family's needs and their availability.</h2>
+                <ul className="howitworks_action_wrapper">
+                  <li className="howitworks_action clickable" data-value1="We like to keep it simple. Tell us your name, contact information, and a little bit about you and your kids. Just like that, you're all set." data-value="./img_1.png">
+                    Sign up
+                  </li>
+                  <li className="howitworks_action clickable" data-value1="Let us know when you need care and we'll match you with a sitter based on your family's needs and their availability." data-value="./img_2.png">
+                    Book a sitter
+                  </li>
+                  <li className="howitworks_action clickable" data-value1="We've got it from here. Your sitter will show up so you can head out. After your booking wraps up you'll receive a payment request through our app." data-value="./img_3.png">
+                    Get care & pay
+                  </li>
+                </ul>
+              </div>
+              <div className="right_side">
+              <img className="hiwimg" src={require(`${image}`)}></img>
+                <h4 className="howitworks_text">
+                </h4>
+              </div>
+            </div>
+          </div>
+        </section>
     </div>
   );
 };
