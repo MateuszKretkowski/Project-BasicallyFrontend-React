@@ -92,18 +92,25 @@ const Header = () => {
   }
 
   window.addEventListener("scroll", reveal);
-  const [image, setImage] = useState("./img_1.png");
-  const clickable = document.getElementsByClassName("clickable")
-  const swap = () => {
-    for (var i=0; i < clickable.length; i++) {
-      clickable[i].addEventListener("click", function() {
-        var contentText = this.getAtribute("data-value1");
-        var contentImg = this.getAtribute("data-value2");
-        document.getElementsByClassName("howitworks_text").innerText = contentText;
-        setImage(contentImg);
-      })
-    }
-  }
+
+  const clickableImg = document.getElementsByClassName("clickableImg")[0];
+  const clickableText = document.getElementsByClassName("clickableText")[0];
+  const clickable1 = document.getElementsByClassName("clickable1")[0];
+  clickable1.addEventListener("click", function() {
+    clickableImg.src = "./img_1.png";
+    clickableText.innerText = "We like to keep it simple. Tell us your name, contact information, and a little bit about you and your kids. Just like that, you're all set."
+  })
+  const clickable2 = document.getElementsByClassName("clickable2")[0];
+  clickable2.addEventListener("click", function() {
+    clickableImg.src = "./img_2.png";
+    clickableText.innerText = "Let us know when you need care and we'll match you with a sitter based on your family's needs and their availability."
+  })
+  const clickable3 = document.getElementsByClassName("clickable3")[0];
+  clickable3.addEventListener("click", function() {
+    clickableImg.src = "./img_3.png";
+    clickableText.innerText = "We've got it from here. Your sitter will show up so you can head out. After your booking wraps up you'll receive a payment request through our app."
+  })
+  
 
   return (
     <div className="website">
@@ -170,21 +177,20 @@ const Header = () => {
                 </h1>
                 <h2>We'll match you with sitters based on your family's needs and their availability.</h2>
                 <ul className="howitworks_action_wrapper">
-                  <li className="howitworks_action clickable" data-value1="We like to keep it simple. Tell us your name, contact information, and a little bit about you and your kids. Just like that, you're all set." data-value="./img_1.png">
+                  <li className="howitworks_action clickable1" >
                     Sign up
                   </li>
-                  <li className="howitworks_action clickable" data-value1="Let us know when you need care and we'll match you with a sitter based on your family's needs and their availability." data-value="./img_2.png">
+                  <li className="howitworks_action clickable2" >
                     Book a sitter
                   </li>
-                  <li className="howitworks_action clickable" data-value1="We've got it from here. Your sitter will show up so you can head out. After your booking wraps up you'll receive a payment request through our app." data-value="./img_3.png">
+                  <li className="howitworks_action clickable3" >
                     Get care & pay
                   </li>
                 </ul>
               </div>
               <div className="right_side">
-              <img className="hiwimg" src={require(`${image}`)}></img>
-                <h4 className="howitworks_text">
-                </h4>
+              <img className="hiwimg clickableImg" src={require("./img_1.png")}></img>
+                <h4 className="howitworks_text clickableText"></h4>
               </div>
             </div>
           </div>
