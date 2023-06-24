@@ -4,7 +4,7 @@
     font-family: 'nunito', sans-serif;
     margin: 0;
     padding: 0;
-    color: #4b4b4b;
+    color: #000000;
     scroll-behavior: smooth;
     border: none;
 }
@@ -275,10 +275,72 @@ h2 {
 
 /* HOW IT WORKS */
 
+.howitworks {
+    height: 50vh;
+    width: 60%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto;
+}
+
+.howitworks_container {
+    margin-top: 15vh;
+    flex-direction: column;
+}
+
 .hiwimg {
-    width: 16%;
+    width: 40%;
     height: auto;
     border-radius: 12%;
     border-bottom-left-radius: 4%;
     border-bottom-right-radius: 4%;
 }
+
+.howitworks_wrapper {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 40px;
+    margin: 0 auto;
+}
+
+.left_side {
+    width: 40%;
+    height: 100%;
+}
+
+.right_side {
+    width: 60%;
+    height: 100%;
+}
+
+.howitworks_action {
+
+}
+
+.howitworks_action:hover {
+    cursor: pointer;
+}
+
+.clickableImg {
+}
+
+.title {
+    font-size: 14px;
+}
+
+.subtitle {
+    font-size: 24px;
+    font-weight: 600;
+}
+
+.fade-in {
+    animation: fadein 2s;
+  }
+  
+  @keyframes fadein {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+  }

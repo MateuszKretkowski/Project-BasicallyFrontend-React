@@ -93,24 +93,33 @@ const Header = () => {
 
   window.addEventListener("scroll", reveal);
 
-  const clickableImg = document.getElementsByClassName("clickableImg")[0];
-  const clickableText = document.getElementsByClassName("clickableText")[0];
-  const clickable1 = document.getElementsByClassName("clickable1")[0];
-  clickable1.addEventListener("click", function() {
-    clickableImg.src = "./img_1.png";
-    clickableText.innerText = "We like to keep it simple. Tell us your name, contact information, and a little bit about you and your kids. Just like that, you're all set."
-  })
-  const clickable2 = document.getElementsByClassName("clickable2")[0];
-  clickable2.addEventListener("click", function() {
-    clickableImg.src = "./img_2.png";
-    clickableText.innerText = "Let us know when you need care and we'll match you with a sitter based on your family's needs and their availability."
-  })
-  const clickable3 = document.getElementsByClassName("clickable3")[0];
-  clickable3.addEventListener("click", function() {
-    clickableImg.src = "./img_3.png";
-    clickableText.innerText = "We've got it from here. Your sitter will show up so you can head out. After your booking wraps up you'll receive a payment request through our app."
-  })
-  
+  const [text, setText] = useState("We like to keep it simple. Tell us your name, contact information, and a little bit about you and your kids. Just like that, youre all set.");
+  const [img, setImg] = useState(require("./img_1.png"));
+
+  const handleClick1 = () => {
+    setText("We like to keep it simple. Tell us your name, contact information, and a little bit about you and your kids. Just like that, youre all set.")
+    setImg(require("./img_1.png"))
+    triggerFadeIn();
+  }
+  const handleClick2 = () => {
+    setText("Let us know when you need care and well match you with a sitter based on your familys needs and their availability.")
+    setImg(require("./img_2.png"))
+    triggerFadeIn();
+  }
+  const handleClick3 = () => {
+    setText("We like to keep it simple. Tell us your name, contact information, and a little bit about you and your kids. Just like that, youre all set.")
+    setImg(require("./img_3.png"))
+    triggerFadeIn();
+  }
+
+  const triggerFadeIn = () => {
+    setFadeIn(false);
+    setTimeout(() => {
+      setFadeIn(true);
+    }, 0);
+  }
+
+  const [fadeIn, setFadeIn] = useState(false);
 
   return (
     <div className="website">
@@ -169,28 +178,32 @@ const Header = () => {
         </header>
         <section className="howitworks">
           <div className="howitworks_container">
+                <h5 className="title">HOW IT WORKS</h5>
             <div className="howitworks_wrapper">
               <div className="left_side">
-                <h5>HOW IT WORKS</h5>
-                <h1>
+                <h1 className="subtitle">
                 We help families find reliable, flexible kidcare
                 </h1>
-                <h2>We'll match you with sitters based on your family's needs and their availability.</h2>
+                <h2 className="description">We'll match you with sitters based on your family's needs and their availability.</h2>
                 <ul className="howitworks_action_wrapper">
-                  <li className="howitworks_action clickable1" >
+                  <li className="howitworks_action clickable1" onClick={handleClick1}>
                     Sign up
                   </li>
-                  <li className="howitworks_action clickable2" >
+                  <li className="howitworks_action clickable2" onClick={handleClick2}>
                     Book a sitter
                   </li>
-                  <li className="howitworks_action clickable3" >
+                  <li className="howitworks_action clickable3" onClick={handleClick3}>
                     Get care & pay
                   </li>
                 </ul>
               </div>
               <div className="right_side">
-              <img className="hiwimg clickableImg" src={require("./img_1.png")}></img>
-                <h4 className="howitworks_text clickableText"></h4>
+              <img 
+  className={`hiwimg clickableImg right_side ${fadeIn ? 'fade-in' : ''}`}
+  Onanimation={() => setFadeIn(false)}
+  src={img}
+/>
+                <h4 className="howitworks_text clickableText">{text}</h4>
               </div>
             </div>
           </div>
