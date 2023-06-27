@@ -275,6 +275,22 @@ const Header = () => {
           </div>
         </div>
       </section>
+      <section className="featured">
+        <h3 className="section_title">AS FEATURED IN</h3>
+        <div className="featured_img_wrapper">
+        <img src={require("./image (8).png")} className="featured_img"/>
+        <img src={require("./image (9).png")} className="featured_img"/>
+        <img src={require("./image (10).png")} className="featured_img"/>
+        <img src={require("./image (11).png")} className="featured_img"/>
+        </div>
+      </section>
+      <section className="whyotter">
+        <div className="whyotter_container">
+          <div className="whyotter_example">
+            {/* <img src={require("")}/> */}
+          </div>
+        </div>
+      </section>
     </div>
   );
 };
