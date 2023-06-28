@@ -286,9 +286,36 @@ const Header = () => {
       </section>
       <section className="whyotter">
         <div className="whyotter_container">
+        <div className="whyotter_examples_wrapper">
           <div className="whyotter_example">
-            {/* <img src={require("")}/> */}
+            <div className="whyotter_text_wrapper">
+              <h2 className="whyotter_text">Looking Ahead</h2>
+              <h3 className="whyotter_subtext">
+                Look at you being so ahead of the game. We can book childcare up to a month out — we look forward to seeing you then.
+              </h3>
+            </div>
+            <img src={require("./image (14).png")} className="whyotter_img" />
           </div>
+          <div className="whyotter_example">
+            <div className="whyotter_text_wrapper">
+              <h2 className="whyotter_text">A Night Out</h2>
+              <h3 className="whyotter_subtext">
+                Nothing should get in the way of the time you spend together, without your kids. Our sitters make date night easy to pull off.
+              </h3>
+            </div>
+            <img src={require("./image (15).png")} className="whyotter_img" />
+          </div>
+          <div className="whyotter_example">
+          <img src={require("./image (12).png")} className="whyotter_img" />
+            <div className="whyotter_text_wrapper">
+              <h2 className="whyotter_text">A Night Out</h2>
+              <h3 className="whyotter_subtext">
+                Nothing should get in the way of the time you spend together, without your kids. Our sitters make date night easy to pull off.
+              </h3>
+            </div>
+            <img src={require("./image (13).png")} className="whyotter_img" />
+          </div>          
+        </div>
         </div>
       </section>
     </div>

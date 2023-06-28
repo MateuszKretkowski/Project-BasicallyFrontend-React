@@ -326,9 +326,10 @@ h2 {
 }
 
 .title {
-    font-size: 56px;
+    font-size: 50px;
     width: 120%;
-    line-height: 70px;
+    line-height: 60px;
+    font-weight: 800;
     margin-bottom: 24px;
     color: #00373e;
 }
@@ -339,7 +340,7 @@ h2 {
     color: #00373e;
     font-size: 26px;
     font-weight: 500;
-    word-spacing: 0px;
+    letter-spacing: -1px;
     line-height: 32px;
 }
 
@@ -434,8 +435,6 @@ h2 {
     overflow: hidden;
     width: 100%;
     border-radius: 8px;
-    border-bottom-left-radius: 0%;
-    border-bottom-right-radius: 0%;
 }
   
 .slide-track {
@@ -461,12 +460,12 @@ h2 {
     justify-content: center;
     align-items: center;
     margin: 0 auto;
+    margin-top: 80px;
     flex-direction: column;
     background-color: #fbd3b6;
-    width: 80%;
-    height: 10vh;
-    border-bottom-left-radius: 8px;
-    border-bottom-right-radius: 8px;
+    width: 56%;
+    height: 15vh;
+    border-radius: 8px;
 }
 
 .featured_img_wrapper {
