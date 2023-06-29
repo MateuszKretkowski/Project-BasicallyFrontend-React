@@ -239,6 +239,7 @@ const Header = () => {
       <section className="testimonials">
       <div className="testimonials_texts">
         <h5 className="section_title">TESTIMONIALS</h5>
+        <h2 className="testimonials_title">See What Our Village Is Saying..</h2>
       </div>
         <div className="slider">
           <div className="slide-track">
@@ -286,6 +287,11 @@ const Header = () => {
       </section>
       <section className="whyotter">
         <div className="whyotter_container">
+        <div className="whyotter_titles_wrapper">
+          <h5 className="section_title">WHY OTTER?</h5>
+          <h2 className="title">We pop in so you can pop out</h2>
+          <h3 className="subtitle">Making the impossible things about childcare possible.</h3>
+        </div>
         <div className="whyotter_examples_wrapper">
           <div className="whyotter_example">
             <div className="whyotter_text_wrapper">
@@ -297,25 +303,47 @@ const Header = () => {
             <img src={require("./image (14).png")} className="whyotter_img" />
           </div>
           <div className="whyotter_example">
+          <img src={require("./image (15).png")} className="whyotter_img reflected" />
             <div className="whyotter_text_wrapper">
               <h2 className="whyotter_text">A Night Out</h2>
               <h3 className="whyotter_subtext">
                 Nothing should get in the way of the time you spend together, without your kids. Our sitters make date night easy to pull off.
               </h3>
             </div>
-            <img src={require("./image (15).png")} className="whyotter_img" />
+            
           </div>
-          <div className="whyotter_example">
+          <div className="whyotter_example long">
           <img src={require("./image (12).png")} className="whyotter_img" />
-            <div className="whyotter_text_wrapper">
-              <h2 className="whyotter_text">A Night Out</h2>
+            <div className="whyotter_text_wrapper long_text">
+              <h2 className="whyotter_text">In a Pinch</h2>
               <h3 className="whyotter_subtext">
-                Nothing should get in the way of the time you spend together, without your kids. Our sitters make date night easy to pull off.
+              Emergency? Sick nanny? No problem, we can help! We can fill requests with as little as two hours' notice.
               </h3>
             </div>
             <img src={require("./image (13).png")} className="whyotter_img" />
           </div>          
         </div>
+        </div>
+      </section>
+      <section className="commonq">
+        <div className="commonq_container">
+          <div className="commonq_texts_wrapper">
+            <h2 className="title">Common Questions</h2>
+            <button className="link_title link_signup_hover longbtn">
+              <h4>View All FAQs</h4>
+            </button>
+          </div>
+          <ul className="commonq_questions_wrapper">
+            <li className="commonq_question">
+              <div className="commonq_visible">
+                <h3 className="commonq_action">What is Otter?</h3>
+                <div className="commonq_plus-sing" />
+              </div>
+              <div className="commonq_hidden">
+                <h4 className="text_hidden">Otter is the childcare solution we wished existed, so we created it! We match families who need care with trusted sitters in their community, on-demand. If you've ever thought about sending the "bat signal" when you're in a kidcare bind, us too. That's why our care options are designed to cater to both future plans and unplanned schedule changes. Sitters benefit from the flexibility to earn money on their schedules while providing quality care.</h4>
+              </div>
+            </li>
+          </ul>
         </div>
       </section>
     </div>
