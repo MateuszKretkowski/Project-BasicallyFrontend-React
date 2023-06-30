@@ -138,6 +138,12 @@ const Header = () => {
   const [fadeIn, setFadeIn] = useState(false);
   const [bumpIn, setBumpIn] = useState(false);
 
+  const [open, setOpen] = useState(false);
+
+  const handleOpen = () => {
+    setOpen(!open);
+  };
+
   return (
     <div className="website">
       <script
@@ -237,10 +243,12 @@ const Header = () => {
         </div>
       </section>
       <section className="testimonials">
-      <div className="testimonials_texts">
-        <h5 className="section_title">TESTIMONIALS</h5>
-        <h2 className="testimonials_title">See What Our Village Is Saying..</h2>
-      </div>
+        <div className="testimonials_texts">
+          <h5 className="section_title">TESTIMONIALS</h5>
+          <h2 className="testimonials_title">
+            See What Our Village Is Saying..
+          </h2>
+        </div>
         <div className="slider">
           <div className="slide-track">
             <div className="slide a1">
@@ -279,50 +287,58 @@ const Header = () => {
       <section className="featured">
         <h3 className="section_title">AS FEATURED IN</h3>
         <div className="featured_img_wrapper">
-        <img src={require("./image (8).png")} className="featured_img"/>
-        <img src={require("./image (9).png")} className="featured_img"/>
-        <img src={require("./image (10).png")} className="featured_img"/>
-        <img src={require("./image (11).png")} className="featured_img"/>
+          <img src={require("./image (8).png")} className="featured_img" />
+          <img src={require("./image (9).png")} className="featured_img" />
+          <img src={require("./image (10).png")} className="featured_img" />
+          <img src={require("./image (11).png")} className="featured_img" />
         </div>
       </section>
       <section className="whyotter">
         <div className="whyotter_container">
-        <div className="whyotter_titles_wrapper">
-          <h5 className="section_title">WHY OTTER?</h5>
-          <h2 className="title">We pop in so you can pop out</h2>
-          <h3 className="subtitle">Making the impossible things about childcare possible.</h3>
-        </div>
-        <div className="whyotter_examples_wrapper">
-          <div className="whyotter_example">
-            <div className="whyotter_text_wrapper">
-              <h2 className="whyotter_text">Looking Ahead</h2>
-              <h3 className="whyotter_subtext">
-                Look at you being so ahead of the game. We can book childcare up to a month out — we look forward to seeing you then.
-              </h3>
-            </div>
-            <img src={require("./image (14).png")} className="whyotter_img" />
+          <div className="whyotter_titles_wrapper">
+            <h5 className="section_title">WHY OTTER?</h5>
+            <h2 className="title">We pop in so you can pop out</h2>
+            <h3 className="subtitle">
+              Making the impossible things about childcare possible.
+            </h3>
           </div>
-          <div className="whyotter_example">
-          <img src={require("./image (15).png")} className="whyotter_img reflected" />
-            <div className="whyotter_text_wrapper">
-              <h2 className="whyotter_text">A Night Out</h2>
-              <h3 className="whyotter_subtext">
-                Nothing should get in the way of the time you spend together, without your kids. Our sitters make date night easy to pull off.
-              </h3>
+          <div className="whyotter_examples_wrapper">
+            <div className="whyotter_example">
+              <div className="whyotter_text_wrapper">
+                <h2 className="whyotter_text">Looking Ahead</h2>
+                <h3 className="whyotter_subtext">
+                  Look at you being so ahead of the game. We can book childcare
+                  up to a month out — we look forward to seeing you then.
+                </h3>
+              </div>
+              <img src={require("./image (14).png")} className="whyotter_img" />
             </div>
-            
+            <div className="whyotter_example">
+              <img
+                src={require("./image (15).png")}
+                className="whyotter_img reflected"
+              />
+              <div className="whyotter_text_wrapper">
+                <h2 className="whyotter_text">A Night Out</h2>
+                <h3 className="whyotter_subtext">
+                  Nothing should get in the way of the time you spend together,
+                  without your kids. Our sitters make date night easy to pull
+                  off.
+                </h3>
+              </div>
+            </div>
+            <div className="whyotter_example long">
+              <img src={require("./image (12).png")} className="whyotter_img" />
+              <div className="whyotter_text_wrapper long_text">
+                <h2 className="whyotter_text">In a Pinch</h2>
+                <h3 className="whyotter_subtext">
+                  Emergency? Sick nanny? No problem, we can help! We can fill
+                  requests with as little as two hours' notice.
+                </h3>
+              </div>
+              <img src={require("./image (13).png")} className="whyotter_img" />
+            </div>
           </div>
-          <div className="whyotter_example long">
-          <img src={require("./image (12).png")} className="whyotter_img" />
-            <div className="whyotter_text_wrapper long_text">
-              <h2 className="whyotter_text">In a Pinch</h2>
-              <h3 className="whyotter_subtext">
-              Emergency? Sick nanny? No problem, we can help! We can fill requests with as little as two hours' notice.
-              </h3>
-            </div>
-            <img src={require("./image (13).png")} className="whyotter_img" />
-          </div>          
-        </div>
         </div>
       </section>
       <section className="commonq">
@@ -335,17 +351,73 @@ const Header = () => {
           </div>
           <ul className="commonq_questions_wrapper">
             <li className="commonq_question">
-              <div className="commonq_visible">
+              <div className="commonq_visible" onClick={handleOpen}>
                 <h3 className="commonq_action">What is Otter?</h3>
-                <div className="commonq_plus-sing" />
+                <div
+                  className={`commonq_plus-sing ${
+                    open ? "newline" : "newlineexit"
+                  }`}
+                />
               </div>
               <div className="commonq_hidden">
-                <h4 className="text_hidden">Otter is the childcare solution we wished existed, so we created it! We match families who need care with trusted sitters in their community, on-demand. If you've ever thought about sending the "bat signal" when you're in a kidcare bind, us too. That's why our care options are designed to cater to both future plans and unplanned schedule changes. Sitters benefit from the flexibility to earn money on their schedules while providing quality care.</h4>
+                <h4 className={`text_hidden ${open ? "text0height" : ""}`}>
+                  Otter is the childcare solution we wished existed, so we
+                  created it! We match families who need care with trusted
+                  sitters in their community, on-demand. If you've ever thought
+                  about sending the "bat signal" when you're in a kidcare bind,
+                  us too. That's why our care options are designed to cater to
+                  both future plans and unplanned schedule changes. Sitters
+                  benefit from the flexibility to earn money on their schedules
+                  while providing quality care.
+                </h4>
               </div>
             </li>
+            
           </ul>
         </div>
       </section>
+      <footer className="footer">
+        <div className="footer_container">
+          <div className="popup_wrapper">
+            <h2 className="footer_title">The bright side of kidcare</h2>
+            <h4 className="footer_subtitle">
+              Get reliable on demand childcare from vetted sitters in your
+              community.
+            </h4>
+            <button className="button">Get started</button>
+          </div>
+          <div className="sides_wrapper">
+            <div className="links_container">
+              <ul className="links_wrapper">
+                <li className="link_title link_title_hover">Parents</li>
+                <li className="link_title link_title_hover">Sitters</li>
+                <li className="link_title link_title_hover">Trust & Safety</li>
+              </ul>
+              <ul className="links_wrapper">
+                <li className="link_title link_title_hover">Parents</li>
+                <li className="link_title link_title_hover">Sitters</li>
+                <li className="link_title link_title_hover">Trust & Safety</li>
+              </ul>
+              <ul className="links_wrapper">
+                <li className="link_title link_title_hover">Parents</li>
+                <li className="link_title link_title_hover">Sitters</li>
+                <li className="link_title link_title_hover">Trust & Safety</li>
+              </ul>
+            </div>
+            <div className="logo" />
+          </div>
+          <div className="copyright_container">
+            <div className="termsofuse">
+                <h4>Terms of Use</h4>
+                <div />
+                <h4>Privacy Policy</h4>
+            </div>
+            <div>
+              <h4>© 2023 Otter. Made by Mateusz Kretkowski</h4>
+            </div>
+          </div>  
+        </div>
+      </footer>
     </div>
   );
 };
