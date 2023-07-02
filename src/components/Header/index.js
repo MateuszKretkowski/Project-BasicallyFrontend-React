@@ -49,6 +49,20 @@ const Header = () => {
     );
   };
 
+  // const hiddenElements = document.querySelectorAll(".hidden");
+  // hiddenElements.forEach((el) => observer.observe(el));
+  
+  // const observer = new IntersectionObserver((entries) => {
+  //   entries.forEach((entry) => {
+  //     if (entry.isIntersecting) {
+  //       entry.target.classList.add("show");
+  //     } else {
+  //       entry.target.classList.remove("show");
+  //     }
+  //   });
+  // });
+  
+
   const letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
   const hackMouseOverHandler = (event) => {
     let iterations = 0;
@@ -145,6 +159,7 @@ const Header = () => {
   };
 
   return (
+    
     <div className="website">
       <script
         src="https://kit.fontawesome.com/169dda284c.js"
@@ -154,7 +169,7 @@ const Header = () => {
         rel="stylesheet"
         href="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.15.1/devicon.min.css"
       ></link>
-      <div className="navBar">
+      <div className="navBar show">
         <div className="navBar_wrapper">
           <ul className="links_wrapper">
             <li className="link">
@@ -181,10 +196,11 @@ const Header = () => {
           </ul>
         </div>
       </div>
+     
       <header>
         <div className="header_wrapper">
           <div className="header_container">
-            <img className="img imgnum1" src={require("./img_1.png")}></img>
+            <img className="img imgnum1 show" src={require("./img_1.png")}></img>
             <div className="img imgnum2"></div>
             <img className="img imgnum3" src={require("./img_2.png")}></img>
             <img className="img imgnum4" src={require("./img_3.png")}></img>
@@ -377,46 +393,9 @@ const Header = () => {
         </div>
       </section>
       <footer className="footer">
-        <div className="footer_container">
-          <div className="popup_wrapper">
-            <h2 className="footer_title">The bright side of kidcare</h2>
-            <h4 className="footer_subtitle">
-              Get reliable on demand childcare from vetted sitters in your
-              community.
-            </h4>
-            <button className="button">Get started</button>
-          </div>
-          <div className="sides_wrapper">
-            <div className="links_container">
-              <ul className="links_wrapper">
-                <li className="link_title link_title_hover">Parents</li>
-                <li className="link_title link_title_hover">Sitters</li>
-                <li className="link_title link_title_hover">Trust & Safety</li>
-              </ul>
-              <ul className="links_wrapper">
-                <li className="link_title link_title_hover">Parents</li>
-                <li className="link_title link_title_hover">Sitters</li>
-                <li className="link_title link_title_hover">Trust & Safety</li>
-              </ul>
-              <ul className="links_wrapper">
-                <li className="link_title link_title_hover">Parents</li>
-                <li className="link_title link_title_hover">Sitters</li>
-                <li className="link_title link_title_hover">Trust & Safety</li>
-              </ul>
+            <div className="footer_container">
+                <img className="logo" src={require("./l.png")} />
             </div>
-            <div className="logo" />
-          </div>
-          <div className="copyright_container">
-            <div className="termsofuse">
-                <h4>Terms of Use</h4>
-                <div />
-                <h4>Privacy Policy</h4>
-            </div>
-            <div>
-              <h4>© 2023 Otter. Made by Mateusz Kretkowski</h4>
-            </div>
-          </div>  
-        </div>
       </footer>
     </div>
   );

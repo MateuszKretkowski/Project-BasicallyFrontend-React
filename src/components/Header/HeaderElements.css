@@ -15,24 +15,22 @@ body {
 
 /* ON SCROLL ANIMATIONS */
 
-.hidden{ 
-    opacity: 0; 
-    filter: blur(5px); 
-    transform: translateX(-100%); 
-    transition: all 1s; 
-} 
-.show{ 
-    opacity: 1; 
-    filter: blur(0); 
-    transform: translateX(0); 
-} 
-@media(prefers-reduced-motion){ 
-    .hidden{ 
-        transition: none;
-    } 
+.hidden { opacity: 0; filter: blur(5px); transform: translateX(-100%); transition: all 1s; } 
+.show { opacity: 1; filter: blur(0); transform: translateX(0); } 
+@media (prefers-reduced-motion) { 
+    .hidden {transition: none;}
 }
 
 /* NAVBAR */
+
+.dissaper {
+    color: #00373e;
+    font-size: 24px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    display: none;
+}
 
 .navBar {
     display: flex;
@@ -273,6 +271,30 @@ h2 {
     border-radius: 56% 33% 14% 29% / 16% 23% 34% 38%;
 }
 
+@media (max-width: 997px) {
+    .img {
+        border-radius: 16%;
+        z-index: -1;
+    }
+    .header_text {
+        z-index: 2;
+    }
+    .header_container {
+        z-index: 2;
+    }
+}
+
+.img {
+    z-index: -1;
+}
+
+.header_text {
+    z-index: 2;
+}
+.header_container {
+    z-index: 2;
+}
+
 /* HOW IT WORKS */
 
 .howitworks {
@@ -366,6 +388,14 @@ h2 {
     color: #fbd3b6;
 }
 
+@media (max-width: 997px) {
+    body {
+        display: none;
+    }
+    .dissaper{ 
+        display: flex;
+    }
+}
 
 .clickableImg {
     width: 480px;
@@ -467,6 +497,8 @@ h2 {
     font-weight: 700;
 }
 
+
+
 /* FEATURED */
 
 .featured {
@@ -486,6 +518,7 @@ h2 {
     display: flex;
     justify-content: center;
     align-items: center;
+    flex-wrap: wrap;
     gap: 40px;
     margin-bottom: 24px;
 }
@@ -572,7 +605,7 @@ h2 {
 .commonq {
     position: relative;
     width: 56%;
-    height: 150vh;
+    height: 50vh;
     margin: 0 auto;
     margin-top: 500px;
     display: flex;
@@ -694,4 +727,25 @@ h2 {
         transform: rotate(0deg);
         transform: all 300ms ease;
     }
+}
+
+/* FOOTER */
+
+.footer {
+    display: flex;
+    justify-content: center;
+    align-items: end;
+    margin: 0 auto;
+    width: 100vw;
+    height: 20vh;
+    margin-bottom: 12px;
+    position: relative;
+}
+
+.footer_container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 32px;
+    width: 50%;
 }
